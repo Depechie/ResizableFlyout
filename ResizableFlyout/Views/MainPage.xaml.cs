@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -109,7 +110,15 @@ namespace ResizableFlyout.Views
 
         private void OnFilterFlyoutOpened(object sender, object e)
         {
-            
+            MenuFlyout menuFlyout = sender as MenuFlyout;
+            Style style = new Style { TargetType = typeof(MenuFlyoutPresenter) };
+            style.Setters.Add(new Setter(MinWidthProperty, MasterColumn.ActualWidth));
+
+            //Assuming we didn't set a different Compact Pane size other than using the default one
+            var paneSize = Convert.ToInt32((Application.Current.Resources["SplitViewCompactPaneThemeLength"] as double?).Value);
+            style.Setters.Add(new Setter(MarginProperty, new Thickness(paneSize, 0, 0, 0)));
+
+            menuFlyout.MenuFlyoutPresenterStyle = style;
         }
     }
 }
