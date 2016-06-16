@@ -124,12 +124,22 @@
                     <ColumnDefinition x:Name="DetailColumn" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="My Items"
-                           Grid.Column="0"
-                           Margin="12,8,8,8"
-                           Style="{ThemeResource TitleTextBlockStyle}" />
+                <Button x:Name="FilterButton"
+                        Style="{StaticResource EmptyButtonStyle}"
+                        Content="Showing all items"
+                        Margin="10,5,0,10"
+                        Grid.Row="0"
+                        Grid.Column="0" FontWeight="Bold">
+                    <Button.Flyout>
+                        <MenuFlyout x:Name="FilterFlyout" Opened="OnFilterFlyoutOpened">
+                            <MenuFlyoutItem Text="all items" />
+                            <MenuFlyoutItem Text="my items" />
+                            <MenuFlyoutItem Text="friends' items" />
+                        </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
 
-                <ListView x:Name="MasterListView"
+                    <ListView x:Name="MasterListView"
                           Grid.Row="1" Grid.Column="0"
                           ItemContainerTransitions="{x:Null}"
                           ItemTemplate="{StaticResource MasterListViewItemTemplate}"

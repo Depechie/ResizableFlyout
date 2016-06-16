@@ -106,5 +106,10 @@ namespace ResizableFlyout.Views
         {
             DetailContentPresenter?.ContentTransitions.Clear();
         }
+
+        private void OnFilterFlyoutOpened(object sender, object e)
+        {
+            
+        }
     }
 }
